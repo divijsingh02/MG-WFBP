@@ -11,8 +11,10 @@ import logging
 from dl_trainer import DLTrainer, _support_datasets, _support_dnns
 if settings.ORIGINAL_HOROVOD:
     import horovod.torch as hvd
+    hvd.init()
 else:
     import distributed_optimizer as hvd
+    hvd.init()
     os.environ['HOROVOD_FUSION_THRESHOLD'] = '0'
     os.environ['HOROVOD_CACHE_CAPACITY'] = '0'
     os.environ['HOROVOD_MPI_THREADS_DISABLE'] = '1'
@@ -71,6 +73,7 @@ def mgwfbp(dnn, dataset, data_dir, nworkers, lr, batch_size, nsteps_update, max_
     logger.info('max_epochs: %d', max_epochs)
     display = 10 if iters_per_epoch > 10 else iters_per_epoch-1
     for epoch in range(max_epochs):
+        print('epoch : ',epoch)
         hidden = None
         if dnn == 'lstm':
             hidden = trainer.net.init_hidden()

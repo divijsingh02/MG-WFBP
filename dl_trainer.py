@@ -566,11 +566,12 @@ class DLTrainer:
         self.num_batches_per_epoch = (self.get_num_of_training_samples()+self.batch_size*self.nworkers-1)//(self.batch_size*self.nworkers)
 
     def data_iter(self):
+        
         try:
-            d = self.data_iterator.next()
+            d = next(self.data_iterator)
         except:
             self.data_iterator = iter(self.trainloader)
-            d = self.data_iterator.next()
+            d = next(self.data_iterator.next)
         #if d[0].size()[0] != self.batch_size:
         #    return self.data_iter()
         return d
