@@ -571,7 +571,7 @@ class DLTrainer:
             d = next(self.data_iterator)
         except:
             self.data_iterator = iter(self.trainloader)
-            d = next(self.data_iterator.next)
+            d = next(self.data_iterator)
         #if d[0].size()[0] != self.batch_size:
         #    return self.data_iter()
         return d
