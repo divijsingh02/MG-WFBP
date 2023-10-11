@@ -72,7 +72,7 @@ def mgwfbp(dnn, dataset, data_dir, nworkers, lr, batch_size, nsteps_update, max_
     times = []
     logger.info('max_epochs: %d', max_epochs)
     display = 10 if iters_per_epoch > 10 else iters_per_epoch-1
-    for epoch in range(max_epochs):
+    for epoch in range(200):
         print('epoch : ',epoch)
         hidden = None
         if dnn == 'lstm':
@@ -100,9 +100,11 @@ def mgwfbp(dnn, dataset, data_dir, nworkers, lr, batch_size, nsteps_update, max_
             if i % display == 0 and i > 0: 
                 time_per_iter = np.mean(times)
                 logger.warn('Time per iteration including communication: %f, Speed: %f images/s', time_per_iter, batch_size * nsteps_update / time_per_iter)
-                times = []
+                # times = []
         if not settings.ORIGINAL_HOROVOD:
             optimizer.train_epoch += 1
+
+    print('total time :',np.sum(times))
 
 
 if __name__ == '__main__':
