@@ -261,7 +261,7 @@ class _DistributedOptimizer(torch.optim.Optimizer):
             logger.info('Predicted non-overlapped time: %f', taoc[0]+tc[0]-(taob[0]+tb[0]))
             logger.info('Predicted tb+tc= %f', taoc[0]+tc[0])
             logger.info('Merged tc sum: %f', np.sum(tc))
-
+        print("Yes, it works (CHECK)")
         return groups, key_groupidx_maps
 
     def _generate_merged_parameters(self):
