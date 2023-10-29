@@ -250,7 +250,7 @@ class _DistributedOptimizer(torch.optim.Optimizer):
                 idx += 1
                 groups.append(group)
                 group = []
-        print('groups : 'groups)
+        print('groups : ',groups)
         print('len  of groups :', len(groups))
         print(idx)
         print(L)
