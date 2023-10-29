@@ -179,6 +179,8 @@ class _DistributedOptimizer(torch.optim.Optimizer):
                 1: (2.554691138304671e-06, 9.837548167872609e-11)
 
                 }
+        print('num of workers :', num_of_workers)
+        print('alpha beta :',p_alpha_beta_10Gbps[num_of_workers])
         if self.alpha is not None:
             alpha, beta = self.alpha, self.beta
         else:
